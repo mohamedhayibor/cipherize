@@ -1,5 +1,8 @@
 (ns cipherize.core
-    (:require ))
+    (:require [reagent.core :as reagent :refer [atom]])
+
+
+    )
 
 (enable-console-print!)
 
@@ -7,8 +10,19 @@
 
 ;; define your app data so that it doesn't get over-written on reload
 
-(defonce app-state (atom {:text "Hello world!"}))
+(defn alphabet-cipher-form []
+  [:center
+   [:h1 "Alphabet Cipher"]
+   [:form {:action "submit" :method "post"}
+    [:input {:id "GET-secret" :type "text" :placeholder "Enter your secret here"}]
+    [:input {:id "GET-msg" :type "text" :placeholder "Enter your message here"}]
+    [:input {:type "submit" :value "Get cipher"}]
+   ]])
 
+
+
+(reagent/render-component [alphabet-cipher-form]
+                          (. js/document (getElementById "app")))
 
 (defn on-js-reload []
   ;; optionally touch your app-state to force rerendering depending on
