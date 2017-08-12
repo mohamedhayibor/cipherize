@@ -1,14 +1,10 @@
 (ns cipherize.core
-    (:require [reagent.core :as reagent :refer [atom]])
-
-
-    )
+    (:require [reagent.core :as reagent :refer [atom]]
+              [alphabet-cipher.core :as alpha]))
 
 (enable-console-print!)
 
 (println "This text is printed from src/cipherize/core.cljs. Go ahead and edit it and see reloading in action.")
-
-;; define your app data so that it doesn't get over-written on reload
 
 (defn alphabet-cipher-form []
   [:center
@@ -18,7 +14,6 @@
     [:input {:id "GET-msg" :type "text" :placeholder "Enter your message here"}]
     [:input {:type "submit" :value "Get cipher"}]
    ]])
-
 
 
 (reagent/render-component [alphabet-cipher-form]
