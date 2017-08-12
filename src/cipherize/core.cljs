@@ -1,10 +1,15 @@
 (ns cipherize.core
     (:require [reagent.core :as reagent :refer [atom]]
-              [alphabet-cipher.core :as alpha]))
+              [alphabet-cipher.core :as alpha]
+              [dommy.core :refer-macros [sel sel1]]
+              ))
+
 
 (enable-console-print!)
 
+
 (println "This text is printed from src/cipherize/core.cljs. Go ahead and edit it and see reloading in action.")
+
 
 (defn alphabet-cipher-form []
   [:center
@@ -12,7 +17,8 @@
    [:form {:action "submit" :method "post"}
     [:input {:id "GET-secret" :type "text" :placeholder "Enter your secret here"}]
     [:input {:id "GET-msg" :type "text" :placeholder "Enter your message here"}]
-    [:input {:type "submit" :value "Get cipher"}]
+    [:input {:type "submit" :value "Get cipher"
+             :onClick (prn (alpha/encode (sel1 :#GET-secret) (sel1 :GET-msg) ) )}]
    ]])
 
 
